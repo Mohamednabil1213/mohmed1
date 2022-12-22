@@ -1,10 +1,10 @@
 const scrollBtn = document.getElementsByClassName("backToTop")[0];
 const navBarList = document.getElementById("navbar__list");
 const [...sections] = document.getElementsByTagName("section");
-const navItems = document.getElementsByClassName("navbar__item");
+const   navItems = document.getElementsByClassName("navbar__item");
 const sectionsIDs = sections.map(sec => sec.id);
 const navItemsData = sections.map(sec => sec.getAttribute("data-nav"));
-const scroll = (e) => {
+const scrollTo = (e) => {
     e.preventDefault();
     const target = e.target.getAttribute("data-scroll-to");
     const element = document.querySelector(target);
@@ -15,8 +15,8 @@ const isInViewport = (elem) => {
     const winHeight = window.innerHeight || document.documentElement.clientHeight;
     return bottom >= 0 && top <= winHeight
 };
-const showBackTop = () => window.addEventListener("scroll", () => scrollBtn.classList.toggle("backToTop--active", window.scrollY > 500));
-const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+const showBackTop = () =>  window.addEventListener("scroll", () => scrollBtn.classList.toggle("backToTop--active", window.scrollY > 500));
+const scrollingTop = () => window.scrollTo({ top: 0,   behavior: "smooth" });
 // Main
 const buildNav = (nav, items, secIDs) => {
     const fragment = document.createDocumentFragment();
@@ -24,7 +24,7 @@ const buildNav = (nav, items, secIDs) => {
         const listItem = document.createElement("li");
         listItem.textContent = item;
         listItem.classList.add("navbar__item");
-        listItem.addEventListener("click", scrollTo);
+        listItem.addEventListener("click", scrollingTo);
         listItem.setAttribute("data-scroll-to", `#${secIDs[i]}`);
         fragment.appendChild(listItem);
     });
@@ -40,7 +40,11 @@ const activateSec = () => {
         });
     });
 };
+//nav
 buildNav(navBarList, navItemsData, sectionsIDs);
 activateSec()
+//show back to top
 showBackTop()
+//scroll to Top
 scrollTop()
+//end the project
