@@ -46,5 +46,5 @@ activateSec()
 //show back to top
 showBackTop()
 //scroll to Top
-scrollingtoTop();
+scrollingtotop();
 //end the project
